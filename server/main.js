@@ -14,8 +14,8 @@ import api from './routes';
 
 
 const app = express();
-const port = 3000;
-const devPort = 4000;
+const port = 30011;
+const devPort = 30012;
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -24,8 +24,7 @@ app.use(bodyParser.json());
 const db = mongoose.connection;
 db.on('error', console.error);
 db.once('open', () => { console.log('Connected to mongodb server'); });
-// mongoose.connect('mongodb://username:password@host:port/database=');
-mongoose.connect('mongodb://localhost/codelab');
+mongoose.connect('mongodb://admin1:admin1@ds133275.mlab.com:33275/movieproj');
 
 /* use session */
 app.use(session({
