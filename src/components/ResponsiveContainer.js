@@ -93,7 +93,9 @@ const getWidth = () => {
 class MobileContainer extends React.Component {
 	constructor() {
 		super();
-		this.state = {};
+		this.state = {
+			sidebarOpened: false
+		};
 	}
 
 	handleSidebarHide() {
