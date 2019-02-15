@@ -19,6 +19,7 @@ import {
 import ResponsiveContainer from './ResponsiveContainer';
 import ThumbnailList from './ThumbnailList';
 import Thumbnail from './Thumbnail';
+import Main from './Main'
 
 const HomepageLayout = () => (
     <ResponsiveContainer>
