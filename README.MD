@@ -26,7 +26,7 @@ unzip node_modules.zip -d node_modules
 - `npm run clean` 서버 / 클라이언트 빌드된 코드 제거
 - `npm run build` 서버 / 클라이언트 빌드
 - `npm run start` production 환경에서 서버 시작
-- `npm run development` development 환경에서 서버 시작
+- `npm run dev` development 환경에서 서버 시작
 
 Express 서버는 포트 3000, 개발서버는 4000 으로 실행됩니다. 변경은 server/main.js 에서 할 수 있습니다.
 포트를 변경한다면 webpack.dev.config.js 파일도 수정해주셔야 개발서버가 정상작동합니다.
