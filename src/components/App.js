@@ -21,9 +21,12 @@ import ThumbnailList from './ThumbnailList';
 import Thumbnail from './Thumbnail';
 import Main from './Main'
 
+import DramaInfo from '../containers/DramaInfo';
+
 const HomepageLayout = () => (
-    <ResponsiveContainer>
-        <Main/>
+     <ResponsiveContainer>
+         <Main/>
     </ResponsiveContainer>
+    //<DramaInfo></DramaInfo>
 )
 export default HomepageLayout
