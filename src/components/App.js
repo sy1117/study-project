@@ -16,14 +16,9 @@ import {
     Visibility,
 } from 'semantic-ui-react'
 
-import ResponsiveContainer from './ResponsiveContainer';
-import ThumbnailList from './ThumbnailList';
-import Thumbnail from './Thumbnail';
-import Main from './Main'
+import ResponsiveContainer from '../containers/ResponsiveContainer';
 
 const HomepageLayout = () => (
-    <ResponsiveContainer>
-        <Main/>
-    </ResponsiveContainer>
+    <ResponsiveContainer/>
 )
 export default HomepageLayout
