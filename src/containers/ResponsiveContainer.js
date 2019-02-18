@@ -93,9 +93,9 @@ class DesktopContainer extends React.Component {
 				<Route path="/detail" component={InfoContainer} />
 				<Route path="/rank" component={Rank} />
 
-				<Segment inverted vertical style={{ padding: '5em 0em' }}>
+				{/* <Segment inverted vertical style={{ padding: '5em 0em' }}>
 					<Footer/>
-				</Segment>
+				</Segment> */}
 			</Responsive>
 		</Router>
 		)
