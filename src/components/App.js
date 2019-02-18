@@ -16,10 +16,7 @@ import {
     Visibility,
 } from 'semantic-ui-react'
 
-import ResponsiveContainer from './ResponsiveContainer';
-import ThumbnailList from './ThumbnailList';
-import Thumbnail from './Thumbnail';
-import Main from './Main'
+import ResponsiveContainer from '../containers/ResponsiveContainer';
 
 import DramaInfo from '../containers/DramaInfo';
 
@@ -27,6 +24,6 @@ const HomepageLayout = () => (
      <ResponsiveContainer>
          <Main/>
     </ResponsiveContainer>
-    //<DramaInfo></DramaInfo>
+   
 )
 export default HomepageLayout

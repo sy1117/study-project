@@ -23,7 +23,7 @@ unzip node_modules.zip -d node_modules
 
 ## 스크립트
 
-- `npm run clean` 서버 / 클라이언트 빌드된 코드 제거
+- `npm run clean` 서버 / 클라이언트 빌드된 코드 제거 (Window의 경우 rimraf build public/bundle.js)
 - `npm run build` 서버 / 클라이언트 빌드
 - `npm run start` production 환경에서 서버 시작
 - `npm run dev` development 환경에서 서버 시작
