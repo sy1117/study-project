@@ -18,11 +18,11 @@ import {
 
 import ResponsiveContainer from '../containers/ResponsiveContainer';
 
-import DramaInfo from '../containers/DramaInfo';
+
 
 const HomepageLayout = () => (
      <ResponsiveContainer>
-         <Main/>
+         {/* <Main/> */}
     </ResponsiveContainer>
    
 )

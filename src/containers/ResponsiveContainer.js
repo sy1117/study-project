@@ -22,6 +22,7 @@ import Rank from '../components/content/Rank'
 import Footer from '../components/partial/Footer'
 import Heading from '../components/partial/Heading'
 import MenuLink from '../components/partial/MenuLink'
+import InfoContainer from '../containers/InfoContainer';
 
 
 const getWidth = () => {
@@ -89,7 +90,7 @@ class DesktopContainer extends React.Component {
 				</Visibility>
 
 				<Route exact path="/" component={Main} />
-				<Route path="/detail" component={Detail} />
+				<Route path="/detail" component={InfoContainer} />
 				<Route path="/rank" component={Rank} />
 
 				<Segment inverted vertical style={{ padding: '5em 0em' }}>
