@@ -23,7 +23,7 @@ import Footer from '../components/partial/Footer'
 import Heading from '../components/partial/Heading'
 import MenuLink from '../components/partial/MenuLink'
 import InfoContainer from '../containers/InfoContainer'
-import Chart from '../components/partial//Chart';
+import Chart from '../components/partial/Chart';
 
 
 const getWidth = () => {
