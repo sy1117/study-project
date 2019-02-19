@@ -22,7 +22,8 @@ import Rank from '../components/content/Rank'
 import Footer from '../components/partial/Footer'
 import Heading from '../components/partial/Heading'
 import MenuLink from '../components/partial/MenuLink'
-import InfoContainer from '../containers/InfoContainer';
+import InfoContainer from '../containers/InfoContainer'
+import Chart from '../components/partial//Chart';
 
 
 const getWidth = () => {
@@ -91,7 +92,7 @@ class DesktopContainer extends React.Component {
 
 				<Route exact path="/" component={Main} />
 				<Route path="/detail" component={InfoContainer} />
-				<Route path="/rank" component={Rank} />
+				<Route path="/rank" component={Chart} />
 
 				{/* <Segment inverted vertical style={{ padding: '5em 0em' }}>
 					<Footer/>
