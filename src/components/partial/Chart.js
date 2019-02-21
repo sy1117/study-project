@@ -8,7 +8,7 @@ const data = {
         label: 'My First dataset',
         fill: false,
         // lineTension: 0.1,
-        backgroundColor:  ['#FF6384', '#36A2EB', '#FFCE56'],  // 색을 지정하는 만큼만 칠해짐...
+        backgroundColor:  ['red', 'pink', 'orange', 'yellow', 'lightgreen', 'lightblue', 'brown', 'gray'],  // data 개수만큼 노출됨
         // borderColor: 'rgba(75,192,192,1)',
         borderCapStyle: 'butt',
         borderDash: [],
