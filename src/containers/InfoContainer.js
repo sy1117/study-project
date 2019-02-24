@@ -5,6 +5,13 @@ import Thumbnail from '../components/partial/Thumbnail';
 import ContentSummary from '../components/partial/ContentSummary';
 
 class DramaInfo extends Component {
+
+    constructor() {
+        super();
+        this.state = {};
+    }
+
+
     render() {
         return (
         <div>
@@ -23,8 +30,9 @@ class DramaInfo extends Component {
 
                 </Grid>
             </Segment>
-
-            <Comment></Comment>
+            <Segment style={{ padding: '2em 1em'}}>
+                <Comment/>
+            </Segment>
 
         </div>
         )
