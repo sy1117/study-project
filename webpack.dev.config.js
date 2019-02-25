@@ -9,7 +9,7 @@ module.exports = {
     ],
 
     output: {
-        path: '/',
+        path: __dirname + '/public/',//'/',
         filename: 'bundle.js'
     },
 
@@ -48,7 +48,11 @@ module.exports = {
                     presets: ['es2015', 'react']
                 })],
                 exclude: /node_modules/,
-            }
+            },
+            {
+                test: /\.css$/,
+                loader: 'style!css-loader'
+            },
         ]
     }
 
