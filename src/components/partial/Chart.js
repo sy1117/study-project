@@ -50,7 +50,29 @@ const drama = {
             borderColor: 'pink'
         }
     ]
-}
+};
+
+const options={
+  legend: {
+    display: true,
+    position: 'right'
+  },
+  scales: {
+    yAxes: [{
+      ticks: {
+         max: 80,
+         min: 0,
+         stepSize: 20
+       }
+     }]
+    },
+   title: {
+    display: true,
+    text: 'recent drama trend',
+    position: 'bottom'
+   }
+};
+
   
   export default class Chart extends Component {
     render() {
@@ -60,7 +82,7 @@ const drama = {
           <Doughnut ref="chart" data={data}  />
           </div>
           <div style={{"width":"50%", "height":"50%"}}>
-              <Line ref="chart" data={drama} />
+              <Line ref="chart" data={drama} options={options}/>
           </div>
         </div>
       );
