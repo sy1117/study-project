@@ -2,3 +2,7 @@
 .comment-inline{
     display: inline-block;
 }
+
+.pointer-cursor{
+    cursor: pointer;
+}
