@@ -233,7 +233,7 @@ class Main extends React.Component{
                             </Grid.Column>
                             <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
                                 <div style={{"width":"50%", "height":"50%"}}>
-                                    <Doughnut ref="chart" data={data}  />
+                                    <Doughnut ref="chart" data={data} options={{legend:false}} />
                                 </div>
                             </Grid.Column>
                         </Grid.Row>
