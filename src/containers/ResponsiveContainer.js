@@ -24,7 +24,7 @@ import InfoContainer from './InfoContainer';
 import Heading from '../components/Heading'
 import Footer from '../components/Footer'
 import MenuLink from '../components/MenuLink'
-
+import Chart from '../components/Chart';
 
 const getWidth = () => {
 	const isSSR = typeof window === 'undefined';
@@ -93,7 +93,6 @@ class DesktopContainer extends React.Component {
 				<Route exact path="/" component={MainContainer} />
 				<Route path="/info/:id" component={InfoContainer} />
 				<Route path="/rank" component={RankContainer} />
-
 			</Responsive>
 		</Router>
 		)

@@ -2,44 +2,69 @@ import React, { Component } from 'react';
 import { Input, Icon, Segment, Button } from 'semantic-ui-react';
 import _ from 'lodash';
 
+import "./Comment.css";
 
 class Comment extends Component {
   constructor(props) {
     super(props);
-    this.state = {  }
-  }
-  render() { 
-    
-    let starRate = [];
-    _.times(5, () => {
-      starRate.push(<Icon name="star" />);
-    });
-
-    const inputStyle={
-      "display":"inline-block", 
-      "float":"left"
+    this.state = { 
+      clickedStar: 0,
+      comment: ""
     }
 
+    this.clickStar = this.clickStar.bind(this);
+    this.inputComment = this.inputComment.bind(this);
+    this.saveComment = this.saveComment.bind(this);
+  }
+
+  clickStar(e){
+    this.setState({
+      clickedStar: (this.state.clickedStar==e.target.getAttribute("data-number")) ? 0 : e.target.getAttribute("data-number") //누른거 또 누를경우 0으로
+    })
+  }
+
+  inputComment(e){
+    this.setState({
+      comment: e.target.value
+    })
+  }
+
+  saveComment(e){
+    
+    alert(`별 ${this.state.clickedStar}개이고 코멘트 ${this.state.comment} 세이브한다.`)
+    //console.log(this.state)
+  }
+
+
+  render() { 
+    
+    const divStyle={
+      "padding":"5px"
+    };
+
     return ( 
-
-    <div style={{"width":"80%"}} >
-      <Segment>
-      { _.times(5, (idx) => { return <Icon name="star" key={idx} />; }) }
-      재미있음.
-      </Segment>
-      <Segment>
-      { _.times(5, (idx) => { return <Icon name="star" key={idx} />; }) }
-      ique senectus.
-      </Segment>
       
-      { _.times(5, (idx) => { return <Icon name="star" key={idx} style={inputStyle}/>; }) }
-      <div style={{"width":"50%", "float":"left"}}>
-        <Input placeholder='입력하시오' fluid />
-      </div>
-      <Button style={inputStyle}>Add</Button> {/* 버튼클릭 시 저장되도록함 */}
-    </div> 
-
-
+        <div style={{"display":"flex", "flexDirection":"column"}} >
+          <div style={divStyle}>
+            <span>{ _.times(5, (idx) => { return <Icon name="star" key={idx} />; }) }</span>
+          재미있음.
+          </div>
+          <div style={divStyle}>
+            <span>{ _.times(5, (idx) => { return <Icon name="star" key={idx} />; }) }</span>
+          뭔데이거
+          </div>
+          <div style={divStyle}>
+              <Icon name={this.state.clickedStar >= 1 ? "star" : "star outline"} data-number="1" className="pointer-cursor" onClick={this.clickStar}/>
+              <Icon name={this.state.clickedStar >= 2 ? "star" : "star outline"} data-number="2" className="pointer-cursor" onClick={this.clickStar}/>
+              <Icon name={this.state.clickedStar >= 3 ? "star" : "star outline"} data-number="3" className="pointer-cursor" onClick={this.clickStar}/>
+              <Icon name={this.state.clickedStar >= 4 ? "star" : "star outline"} data-number="4" className="pointer-cursor" onClick={this.clickStar}/>
+              <Icon name={this.state.clickedStar >= 5 ? "star" : "star outline"} data-number="5" className="pointer-cursor" onClick={this.clickStar}/>
+            <div className="comment-inline">
+              <Input placeholder='한줄평을 입력하세요' onChange={this.inputComment} style={{"width":"50em"}}/>
+              <Button color="teal" onClick={this.saveComment}><Icon name="plus"></Icon>Add</Button>
+            </div>
+          </div>
+        </div> 
      );
   }
 }
