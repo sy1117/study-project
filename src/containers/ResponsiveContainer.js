@@ -16,13 +16,14 @@ import {
 	Sidebar,
 	Visibility,
 } from 'semantic-ui-react'
-import Main from '../components/content/Main'
-import Detail from '../components/content/Detail'
-import Rank from '../components/content/Rank'
-import Footer from '../components/partial/Footer'
-import Heading from '../components/partial/Heading'
-import MenuLink from '../components/partial/MenuLink'
-import InfoContainer from '../containers/InfoContainer';
+
+import MainContainer from './MainContainer'
+import RankContainer from './RankContainer'
+import InfoContainer from './InfoContainer';
+
+import Heading from '../components/Heading'
+import Footer from '../components/Footer'
+import MenuLink from '../components/MenuLink'
 
 
 const getWidth = () => {
@@ -85,17 +86,14 @@ class DesktopContainer extends React.Component {
 								</Menu.Item>
 							</Container>
 						</Menu>
-						<Heading />
+						<Heading/>
 					</Segment>
 				</Visibility>
 
-				<Route exact path="/" component={Main} />
-				<Route path="/detail" component={InfoContainer} />
-				<Route path="/rank" component={Rank} />
+				<Route exact path="/" component={MainContainer} />
+				<Route path="/info/:id" component={InfoContainer} />
+				<Route path="/rank" component={RankContainer} />
 
-				{/* <Segment inverted vertical style={{ padding: '5em 0em' }}>
-					<Footer/>
-				</Segment> */}
 			</Responsive>
 		</Router>
 		)
@@ -107,78 +105,78 @@ DesktopContainer.propTypes = {
 }
 
 
-class MobileContainer extends React.Component {
-	constructor() {
-		super();
-		this.state = {};
-		this.handleSidebarHide = this.handleSidebarHide.bind(this)
-		this.handleToggle = this.handleToggle.bind(this)
-	}
+// class MobileContainer extends React.Component {
+// 	constructor() {
+// 		super();
+// 		this.state = {};
+// 		this.handleSidebarHide = this.handleSidebarHide.bind(this)
+// 		this.handleToggle = this.handleToggle.bind(this)
+// 	}
 
-	handleSidebarHide() {
-		this.setState({ sidebarOpened: false })
-	}
+// 	handleSidebarHide() {
+// 		this.setState({ sidebarOpened: false })
+// 	}
 
-	handleToggle() {
-		this.setState({ sidebarOpened: true })
-	}
+// 	handleToggle() {
+// 		this.setState({ sidebarOpened: true })
+// }	
 
-	render() {
-		const { children } = this.props
-		const { sidebarOpened } = this.state
+// 	render() {
+// 		const { children } = this.props
+// 		const { sidebarOpened } = this.state
 
-		return (
-			<Responsive
-				as={Sidebar.Pushable}
-				getWidth={getWidth}
-				maxWidth={Responsive.onlyMobile.maxWidth}
-			>
-				<Sidebar
-					as={Menu}
-					animation='push'
-					inverted
-					onHide={this.handleSidebarHide}
-					vertical
-					visible={sidebarOpened}
-				>
-					<Menu.Item as='a' active>Home</Menu.Item>
-					<Menu.Item as='a'>Work</Menu.Item>
-					<Menu.Item as='a'>Company</Menu.Item>
-					<Menu.Item as='a'>Careers</Menu.Item>
-					<Menu.Item as='a'>Log in</Menu.Item>
-					<Menu.Item as='a'>Sign Up</Menu.Item>
-				</Sidebar>
+// 		return (
+// 			<Responsive
+// 				as={Sidebar.Pushable}
+// 				getWidth={getWidth}
+// 				maxWidth={Responsive.onlyMobile.maxWidth}
+// 			>
+// 				<Sidebar
+// 					as={Menu}
+// 					animation='push'
+// 					inverted
+// 					onHide={this.handleSidebarHide}
+// 					vertical
+// 					visible={sidebarOpened}
+// 				>
+// 					<Menu.Item as='a' active>Home</Menu.Item>
+// 					<Menu.Item as='a'>Work</Menu.Item>
+// 					<Menu.Item as='a'>Company</Menu.Item>
+// 					<Menu.Item as='a'>Careers</Menu.Item>
+// 					<Menu.Item as='a'>Log in</Menu.Item>
+// 					<Menu.Item as='a'>Sign Up</Menu.Item>
+// 				</Sidebar>
 
-				<Sidebar.Pusher dimmed={sidebarOpened}>
-					<Segment
-						inverted
-						textAlign='center'
-						style={{ minHeight: 250, padding: '1em 0em' }}
-						vertical
-					>
-						<Container>
-							<Menu inverted pointing secondary size='large'>
-								<Menu.Item onClick={this.handleToggle}>
-									<Icon name='sidebar' />
-								</Menu.Item>
-								<Menu.Item position='right'>
-									<Button as='a' inverted>Log in</Button>
-									<Button as='a' inverted style={{ marginLeft: '0.5em' }}>Sign Up</Button>
-								</Menu.Item>
-							</Menu>
-						</Container>
-						<Heading mobile />
-					</Segment>
-					{children}
-				</Sidebar.Pusher>
-			</Responsive>
-		)
-	}
-}
+// 				<Sidebar.Pusher dimmed={sidebarOpened}>
+// 					<Segment
+// 						inverted
+// 						textAlign='center'
+// 						style={{ minHeight: 250, padding: '1em 0em' }}
+// 						vertical
+// 					>
+// 						<Container>
+// 							<Menu inverted pointing secondary size='large'>
+// 								<Menu.Item onClick={this.handleToggle}>
+// 									<Icon name='sidebar' />
+// 								</Menu.Item>
+// 								<Menu.Item position='right'>
+// 									<Button as='a' inverted>Log in</Button>
+// 									<Button as='a' inverted style={{ marginLeft: '0.5em' }}>Sign Up</Button>
+// 								</Menu.Item>
+// 							</Menu>
+// 						</Container>
+// 						<Heading mobile />
+// 					</Segment>
+// 					{children}
+// 				</Sidebar.Pusher>
+// 			</Responsive>
+// 		)
+// 	}
+// }
 
-MobileContainer.propTypes = {
-	children: PropTypes.node,
-}
+// MobileContainer.propTypes = {
+// 	children: PropTypes.node,
+// }
 
 const ResponsiveContainer = ({ children }) => (
 	<div>

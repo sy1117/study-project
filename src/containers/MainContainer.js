@@ -12,13 +12,14 @@ import {
     Segment,
     Grid
 } from 'semantic-ui-react'
-import ThumbnailList from '../partial/ThumbnailList'
+import ThumbnailList from '../components/ThumbnailList'
 
 
 class Main extends React.Component{
 
     constructor(){
         super();
+
         this.state = {
             myFavorite : [
                 {
@@ -34,48 +35,7 @@ class Main extends React.Component{
                     src :'http://photo.newsen.com/news_photo/2018/01/11/201801111855564110_1.jpg'
                 }
             ],
-            top10: [
-                {
-                    id:'01', 
-                    src:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqBgZQGXZu_-oul0dSXwQEiwUUlvIeTqVKA1DxC6SY2dex0spL'
-                },
-                {
-                    id:'02', 
-                    src:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC4D0c8Q6J1VdIe5lkgtE9lnZnPRqCou_umHtbwDKYnfAatf5r9A'
-                },
-                {
-                    id:'03',
-                    src :'http://photo.newsen.com/news_photo/2018/01/11/201801111855564110_1.jpg'
-                },
-                {
-                    id:'04',
-                    src :'https://cdn1.l-nutra.com/wp-content/uploads/2018/07/placeholder.png'
-                },
-                {
-                    id:'05',
-                    src :'https://cdn1.l-nutra.com/wp-content/uploads/2018/07/placeholder.png'
-                },
-                {
-                    id:'06',
-                    src :'https://cdn1.l-nutra.com/wp-content/uploads/2018/07/placeholder.png'
-                },
-                {
-                    id:'07',
-                    src :'https://cdn1.l-nutra.com/wp-content/uploads/2018/07/placeholder.png'
-                },
-                {
-                    id:'08',
-                    src :'https://cdn1.l-nutra.com/wp-content/uploads/2018/07/placeholder.png'
-                },
-                {
-                    id:'09',
-                    src :'https://cdn1.l-nutra.com/wp-content/uploads/2018/07/placeholder.png'
-                },
-                {
-                    id:'10',
-                    src :'https://cdn1.l-nutra.com/wp-content/uploads/2018/07/placeholder.png'
-                },
-            ]
+            top10:[]
         }
     }
     
@@ -148,6 +108,20 @@ class Main extends React.Component{
                 </Segment>
             </div>
         )
+    }
+
+    componentDidMount(){
+        const that = this;
+                
+        fetch(`/api/drama`)
+        .then(function(response, data) {
+            return response.json();
+        })
+        .then(function(data){
+            that.setState({
+                top10: data
+            })
+        })
     }
 }
 // const Main = ({ mobile }) => (

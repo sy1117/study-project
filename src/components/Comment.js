@@ -37,8 +37,6 @@ class Comment extends Component {
         <Input placeholder='입력하시오' fluid />
       </div>
       <Button style={inputStyle}>Add</Button> {/* 버튼클릭 시 저장되도록함 */}
-
-
     </div> 
 
 

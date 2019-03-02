@@ -12,10 +12,11 @@ class ContentSummary extends Component {
     }
 
     render() { 
+        let {data}= this.props;
         return ( 
             <div>
                 <Header as='h3' style={{ fontSize: '2em' }}>
-                루머의 루머의 루머 시즌3
+                {data.name}
                 </Header>
                 <p style={{ fontSize: '1.2em' }}>
                 해나의 죽음 이후, 클레이에게 남겨진 의문의 폴라로이드 사진을 둘러싼 진실을 추적하는 미스터리 드라마<br/>

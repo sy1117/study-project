@@ -16,7 +16,7 @@ import {
     Visibility,
 } from 'semantic-ui-react'
 
-import ResponsiveContainer from '../containers/ResponsiveContainer';
+import ResponsiveContainer from './containers/ResponsiveContainer';
 
 
 
