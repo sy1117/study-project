@@ -1,15 +1,18 @@
 var webpack = require('webpack');
-
+var path = require('path');
 module.exports = {
-
+    resolve: {
+        root: path.resolve('./src'),
+    },
     entry: [
         './src/index.js',
         'webpack-dev-server/client?http://0.0.0.0:4000',
-        'webpack/hot/only-dev-server'
+        'webpack/hot/only-dev-server',
+        'react-hot-loader/patch'
     ],
 
     output: {
-        path: __dirname + '/public/',//'/',
+        path: __dirname + '/public/',
         filename: 'bundle.js'
     },
 
@@ -36,23 +39,42 @@ module.exports = {
 
 
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
     ],
 
     module: {
         loaders: [
             {
-                test: /\.js$/,
-                loaders: ['react-hot', 'babel?' + JSON.stringify({
-                    cacheDirectory: true,
-                    presets: ['es2015', 'react']
-                })],
+                // test: /\.js$/,
+                // loaders: ['react-hot-loader/webpack', 'babel?' + JSON.stringify({
+                //     cacheDirectory: true,
+                //     presets: ['es2015', 'react']
+                // })],
+                // exclude: /node_modules/,
+                test: /.js$/,
+                loader: 'babel',
                 exclude: /node_modules/,
+                query: {
+                    cacheDirectory: true,
+                    presets: ['es2015', 'react'],
+                    plugins: ["react-hot-loader/babel"]
+                }
             },
             {
                 test: /\.css$/,
                 loader: 'style!css-loader'
             },
+            {
+                test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+                loader: require.resolve("url-loader"),
+            },
+            {
+                test: [/\.eot$/, /\.ttf$/, /\.svg$/, /\.woff$/, /\.woff2$/],
+                loader: require.resolve("file-loader"),
+
+            }
         ]
     }
 

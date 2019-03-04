@@ -1,2 +1,7 @@
 
-/* 추후 redux 구조 만들때 사용. */
+import comment from './comment';
+import { combineReducers } from 'redux';
+
+export default combineReducers({
+    comment
+});

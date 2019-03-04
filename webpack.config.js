@@ -1,23 +1,18 @@
 
-
-    /* webpack-dev-server를 콘솔이 아닌 자바스크립트로 실행 할 땐, 
-    HotReloadingModule 를 사용하기 위해선 dev-server 클라이언트와 
-    핫 모듈을 따로 entry 에 넣어주어야 합니다. */
     var webpack = require('webpack');
     var path = require('path');
     module.exports = {
         resolve: {
-            root: path.resolve('./src')
+            root: path.resolve('./src'),
         },
         entry: [
-            './src/index.js',
-            'webpack-dev-server/client?http://0.0.0.0:4000',
-            'webpack/hot/only-dev-server'
+            //'react-hot-loader/patch', 
+            './src/index.js' ,
             // './src/style.css'
         ],
     
-        output: {
-            path: '/', // public 이 아니고 /, 이렇게 하면 파일을 메모리에 저장하고 사용합니다
+        output: { //빌드 결과물을 생성하는 경로와 파일명세팅
+            path: __dirname + '/public/',
             filename: 'bundle.js'
         },
     
@@ -55,12 +50,20 @@
         module: {
             loaders: [
                 {
-                    test: /\.js$/,
-                    loaders: ['babel?' + JSON.stringify({
-                        cacheDirectory: true,
-                        presets: ['es2015', 'react']
-                    })],
+                    // test: /\.js$/,
+                    // loaders: ['react-hot-loader/webpack', 'babel?' + JSON.stringify({
+                    //     cacheDirectory: true,
+                    //     presets: ['es2015', 'react']
+                    // })],
+                    // exclude: /node_modules/,
+                    test: /.js$/,
+                    loader: 'babel',
                     exclude: /node_modules/,
+                    query: {
+                        cacheDirectory: true,
+                        presets: ['es2015', 'react'],
+                        plugins: ["react-hot-loader/babel"]
+                    }
                 },
                 {
                     test: /\.css$/,

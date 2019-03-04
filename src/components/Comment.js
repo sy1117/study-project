@@ -8,6 +8,7 @@ class Comment extends Component {
   constructor(props) {
     super(props);
     this.state = { 
+      dramaId:"",
       clickedStar: 0,
       comment: ""
     }
@@ -15,6 +16,13 @@ class Comment extends Component {
     this.clickStar = this.clickStar.bind(this);
     this.inputComment = this.inputComment.bind(this);
     this.saveComment = this.saveComment.bind(this);
+    this.resetComment = this.resetComment.bind(this);
+  }
+
+  componentDidMount(e){
+    if(window.location.href)
+      this.setState({dramaId:window.location.href.split("info/")[1]});
+    //console.log(window.location.href)
   }
 
   clickStar(e){
@@ -29,10 +37,20 @@ class Comment extends Component {
     })
   }
 
+  
+  resetComment(e){
+    this.setState({clickedStar:0});
+    let input = document.getElementById("commentInput");
+    input.value = "";
+  }
+
   saveComment(e){
-    
-    alert(`별 ${this.state.clickedStar}개이고 코멘트 ${this.state.comment} 세이브한다.`)
-    //console.log(this.state)
+    if(this.state.comment.length == 0) {
+      alert("한줄평을 입력하세요.");
+      return;
+    }
+    this.props.saveComment(this.state);
+    this.resetComment();
   }
 
 
@@ -42,17 +60,22 @@ class Comment extends Component {
       "padding":"5px"
     };
 
+    const generateComment = data => {
+      return data.map((obj, idx)=>{
+        return <div style={divStyle} key={obj._id}>
+                <span>{ _.times(obj.star, (i) => { return <Icon name="star" key={i} />; }) }</span>
+                <span>{ _.times(5-obj.star, (i) => { return <Icon name="star outline" key={i} />; }) }</span>
+                {obj.comment}
+                {/* <span style={{"float":"right"}}><Icon name="delete"></Icon></span> */}
+                {/* <span style={{"fontSize":"9pt", "color":"gray", "float":"right"}}>{`  (${obj.created.substring(0,10)})`}</span> */}
+              </div>
+      })
+    }
+
     return ( 
       
         <div style={{"display":"flex", "flexDirection":"column"}} >
-          <div style={divStyle}>
-            <span>{ _.times(5, (idx) => { return <Icon name="star" key={idx} />; }) }</span>
-          재미있음.
-          </div>
-          <div style={divStyle}>
-            <span>{ _.times(5, (idx) => { return <Icon name="star" key={idx} />; }) }</span>
-          뭔데이거
-          </div>
+          { generateComment(this.props.commentData) }
           <div style={divStyle}>
               <Icon name={this.state.clickedStar >= 1 ? "star" : "star outline"} data-number="1" className="pointer-cursor" onClick={this.clickStar}/>
               <Icon name={this.state.clickedStar >= 2 ? "star" : "star outline"} data-number="2" className="pointer-cursor" onClick={this.clickStar}/>
@@ -60,7 +83,7 @@ class Comment extends Component {
               <Icon name={this.state.clickedStar >= 4 ? "star" : "star outline"} data-number="4" className="pointer-cursor" onClick={this.clickStar}/>
               <Icon name={this.state.clickedStar >= 5 ? "star" : "star outline"} data-number="5" className="pointer-cursor" onClick={this.clickStar}/>
             <div className="comment-inline">
-              <Input placeholder='한줄평을 입력하세요' onChange={this.inputComment} style={{"width":"50em"}}/>
+              <Input placeholder='한줄평을 입력하세요' id="commentInput" onChange={this.inputComment} style={{"width":"50em"}}/>
               <Button color="teal" onClick={this.saveComment}><Icon name="plus"></Icon>Add</Button>
             </div>
           </div>

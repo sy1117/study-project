@@ -4,6 +4,11 @@ import Comment from '../components/Comment';
 import Thumbnail from '../components/Thumbnail';
 import ContentSummary from '../components/ContentSummary';
 
+import { connect } from 'react-redux';
+
+import { saveCommentClick,
+         getCommentClick } from '../actions/comment';;
+
 class DramaInfo extends Component {
     constructor({match}){
         super();
@@ -11,9 +16,35 @@ class DramaInfo extends Component {
             id: match.params.id,
             data:{
                 url :''
-            }
+            },
+            
         }
+
+        this.saveComment = this.saveComment.bind(this);
+        this.getComment = this.getComment.bind(this);
     }
+
+
+    saveComment(commentObj){
+
+        this.props.saveCommentClick(commentObj).then(
+            ()=>{
+                //console.log(this.props.commentSave);
+                 if(this.props.commentSave.status=="SAVE_COMMENT_SUCCESS") {
+                    alert("저장성공");
+                    this.getComment();
+                 }
+                 else "저장실패";
+            }
+        )
+
+    }
+
+    getComment(e){
+        console.log("get 실행")
+        this.props.getCommentClick(this.state.id);
+    }
+
     render() {
         return (
         <div>
@@ -26,10 +57,12 @@ class DramaInfo extends Component {
                         <Grid.Column width={10}>
                             <ContentSummary data={this.state.data}></ContentSummary>
                         </Grid.Column>
-
                     </Grid.Row>
                     <Grid.Row>
-                        <Comment/>
+                        <div>별점 평균: {this.props.commentGet.average.toString().indexOf(".") > -1 ? this.props.commentGet.average.toFixed(2) : this.props.commentGet.average} 개</div>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Comment saveComment={this.saveComment} getComment={this.getComment} commentData={this.props.commentGet.data}/>
                     </Grid.Row>
                 </Grid>
             </Segment>
@@ -39,7 +72,7 @@ class DramaInfo extends Component {
 
     componentDidMount(){
         const that = this;
-                
+        //redux로 바꺼야할듯?
         fetch(`/api/drama/${this.state.id}`)
         .then(function(response, data) {
             console.log(response);
@@ -50,9 +83,31 @@ class DramaInfo extends Component {
             that.setState({
                 data: data
             })
-        })
+        });
+
+        this.getComment();
     }
 }
 
+const mapStateToProps = (state) => {
+    console.log(state.comment.get("get"))
+    return {
+        commentSave: state.comment.get("save"),
+        commentGet: state.comment.get("get")
+    };
+};
 
-export default DramaInfo;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        saveCommentClick: (commentObj) => { 
+            return dispatch(saveCommentClick(commentObj)); 
+        },
+        getCommentClick: (dramaId) => { 
+            return dispatch(getCommentClick(dramaId)); 
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DramaInfo);
+
+
