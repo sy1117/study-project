@@ -11,6 +11,10 @@ const initialState = Map({
         error: -1,
         data: [],
         average: 0
+    },
+    del: {
+        status:"INIT",
+        error: -1
     }
 })
 
@@ -41,6 +45,17 @@ export default function comment(state, action) {
         case types.GET_COMMENT_FAIL:
             return state.setIn(["get","status"], "GET_COMMENT_FAIL")
                         .setIn(["get","error"], action.errorCode);                        
+
+        /* comment delete */
+        case types.DEL_COMMENT:
+            return state.setIn(["del","status"], "DEL_COMMENT");
+
+        case types.DEL_COMMENT_SUCCESS:
+            return state.setIn(["del","status"], "DEL_COMMENT_SUCCESS");
+
+        case types.DEL_COMMENT_FAIL:
+            return state.setIn(["del","status"], "DEL_COMMENT_FAIL")
+                        .setIn(["del","error"], action.errorCode);                        
         default:
             return state;
     }

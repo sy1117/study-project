@@ -52,6 +52,19 @@ router.post('/get', (req, res) => {
 
 });
 
+router.post('/del', (req, res) => {
+
+    let {commentId} = req.body;
+    //console.log(commentId)
+    CommentModel.remove({"_id":commentId}).exec(
+        err=>{
+        if(err) throw err;
+        return res.json(true);
+        }
+    )
+
+});
+
 
 
 export default router;

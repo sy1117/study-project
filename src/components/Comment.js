@@ -10,13 +10,18 @@ class Comment extends Component {
     this.state = { 
       dramaId:"",
       clickedStar: 0,
-      comment: ""
+      comment: "",
+      hoveredId:""
     }
 
     this.clickStar = this.clickStar.bind(this);
     this.inputComment = this.inputComment.bind(this);
     this.saveComment = this.saveComment.bind(this);
     this.resetComment = this.resetComment.bind(this);
+    this.hovered = this.hovered.bind(this);
+    this.leaved = this.leaved.bind(this);
+    this.deleteComment = this.deleteComment.bind(this);
+    
   }
 
   componentDidMount(e){
@@ -29,6 +34,12 @@ class Comment extends Component {
     this.setState({
       clickedStar: (this.state.clickedStar==e.target.getAttribute("data-number")) ? 0 : e.target.getAttribute("data-number") //누른거 또 누를경우 0으로
     })
+  }
+
+
+  deleteComment(e){
+    console.log(this.state.hoveredId)
+    this.props.delComment(this.state.hoveredId);
   }
 
   inputComment(e){
@@ -54,18 +65,36 @@ class Comment extends Component {
   }
 
 
+  hovered(e){
+    //console.log("호버",e.target.id)
+    this.setState({
+         hoveredId: e.target.id
+    })
+  }
+
+  leaved(e){
+      this.setState({
+          hoveredId:""
+      })
+  }
+
+
+
   render() { 
     
     const divStyle={
       "padding":"5px"
     };
 
+    const deleteMark = <span className="pointer-cursor" onClick={this.deleteComment}><Icon name="delete"/></span>;
+
     const generateComment = data => {
       return data.map((obj, idx)=>{
-        return <div style={divStyle} key={obj._id}>
+        return <div style={divStyle} key={obj._id} id={obj._id} onMouseEnter={this.hovered} onMouseLeave={this.leaved} >
                 <span>{ _.times(obj.star, (i) => { return <Icon name="star" key={i} />; }) }</span>
                 <span>{ _.times(5-obj.star, (i) => { return <Icon name="star outline" key={i} />; }) }</span>
                 {obj.comment}
+                { this.state.hoveredId == obj._id ? deleteMark : undefined }
                 {/* <span style={{"float":"right"}}><Icon name="delete"></Icon></span> */}
                 {/* <span style={{"fontSize":"9pt", "color":"gray", "float":"right"}}>{`  (${obj.created.substring(0,10)})`}</span> */}
               </div>
