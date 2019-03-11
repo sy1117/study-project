@@ -4,7 +4,10 @@ import {
     SAVE_COMMENT_FAIL,
     GET_COMMENT,
     GET_COMMENT_SUCCESS,
-    GET_COMMENT_FAIL
+    GET_COMMENT_FAIL,
+    DEL_COMMENT,
+    DEL_COMMENT_SUCCESS,
+    DEL_COMMENT_FAIL
 } from './ActionTypes';
 
 import axios from 'axios';
@@ -77,6 +80,41 @@ export function getCommentSuccess(result) {
 export function getCommentFail(error) {
     return {
         type: GET_COMMENT_FAIL,
+        error
+    };
+}
+
+
+export function delCommentClick(commentId){
+    return (dispatch) => {
+        // Inform Register API is starting
+        dispatch(delComment());
+        //console.log("action",commentId)
+        return axios.post('/api/comment/del', {commentId})
+        .then((response) => {
+            dispatch(delCommentSuccess());
+        }).catch((error) => {
+            dispatch(delCommentFail(error.response.data.code));
+        });
+    };
+}
+
+
+export function delComment() {
+    return {
+        type: DEL_COMMENT
+    };
+}
+
+export function delCommentSuccess() {
+    return {
+        type: DEL_COMMENT_SUCCESS,
+    };
+}
+
+export function delCommentFail(error) {
+    return {
+        type: DEL_COMMENT_FAIL,
         error
     };
 }

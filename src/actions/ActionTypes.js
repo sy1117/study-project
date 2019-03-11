@@ -9,3 +9,8 @@ export const GET_COMMENT = "GET_COMMENT";
 export const GET_COMMENT_SUCCESS = "GET_COMMENT_SUCCESS";
 export const GET_COMMENT_FAIL = "GET_COMMENT_FAIL";
 
+/** delete comment */
+export const DEL_COMMENT = "DEL_COMMENT";
+export const DEL_COMMENT_SUCCESS = "DEL_COMMENT_SUCCESS";
+export const DEL_COMMENT_FAIL = "DEL_COMMENT_FAIL";
+

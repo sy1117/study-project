@@ -7,7 +7,9 @@ import ContentSummary from '../components/ContentSummary';
 import { connect } from 'react-redux';
 
 import { saveCommentClick,
-         getCommentClick } from '../actions/comment';;
+         getCommentClick,
+        delCommentClick
+     } from '../actions/comment';;
 
 class DramaInfo extends Component {
     constructor({match}){
@@ -22,6 +24,7 @@ class DramaInfo extends Component {
 
         this.saveComment = this.saveComment.bind(this);
         this.getComment = this.getComment.bind(this);
+        this.delComment = this.delComment.bind(this);
     }
 
 
@@ -34,7 +37,7 @@ class DramaInfo extends Component {
                     alert("저장성공");
                     this.getComment();
                  }
-                 else "저장실패";
+                 else alert("저장실패");
             }
         )
 
@@ -43,6 +46,20 @@ class DramaInfo extends Component {
     getComment(e){
         console.log("get 실행")
         this.props.getCommentClick(this.state.id);
+    }
+
+    delComment(commentId){
+        console.log("del 실행");
+        this.props.delCommentClick(commentId).then(
+            ()=>{
+                if(this.props.commentDel.status=="DEL_COMMENT_SUCCESS") {
+                    alert("삭제성공");
+                    this.getComment();
+                 }
+                 else alert("삭제실패");
+            }
+        )
+        
     }
 
     render() {
@@ -62,7 +79,7 @@ class DramaInfo extends Component {
                         <div>별점 평균: {this.props.commentGet.average.toString().indexOf(".") > -1 ? this.props.commentGet.average.toFixed(2) : this.props.commentGet.average} 개</div>
                     </Grid.Row>
                     <Grid.Row>
-                        <Comment saveComment={this.saveComment} getComment={this.getComment} commentData={this.props.commentGet.data}/>
+                        <Comment saveComment={this.saveComment} getComment={this.getComment} commentData={this.props.commentGet.data} delComment={this.delComment}/>
                     </Grid.Row>
                 </Grid>
             </Segment>
@@ -90,10 +107,11 @@ class DramaInfo extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.comment.get("get"))
+    //console.log(state.comment.get("get"))
     return {
         commentSave: state.comment.get("save"),
-        commentGet: state.comment.get("get")
+        commentGet: state.comment.get("get"),
+        commentDel: state.comment.get("del"),
     };
 };
 
@@ -104,6 +122,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         getCommentClick: (dramaId) => { 
             return dispatch(getCommentClick(dramaId)); 
+        },
+        delCommentClick: (commentId) => { 
+            return dispatch(delCommentClick(commentId)); 
         }
     };
 };
