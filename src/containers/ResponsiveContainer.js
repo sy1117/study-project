@@ -78,8 +78,8 @@ class DesktopContainer extends React.Component {
 						>
 							<Container>
 								<MenuLink to="/" label="Home"/>
-								<MenuLink to="/detail" label="Detail"/>
-								<MenuLink to="/rank" label="Rank"/>
+								{/* <MenuLink to="/detail" label="Detail"/>
+								<MenuLink to="/rank" label="Rank"/> */}
 								<Menu.Item position='right'>
 									<Button as='a' inverted={!fixed}>Log in </Button>
 									<Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>Sign Up</Button>
