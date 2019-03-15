@@ -32,7 +32,7 @@ class Main extends React.Component{
         const {myFavorite, top10} = this.state;
         return (
             <div>
-                <Segment style={{ padding: '5em 2em' }} vertical>
+                {/* <Segment style={{ padding: '5em 2em' }} vertical>
                     <Header as='h1'>My Favorite</Header>
                     <Grid celled='internally' columns='equal' stackable>
                         <Grid.Row textAlign='center'>
@@ -43,14 +43,14 @@ class Main extends React.Component{
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
-                </Segment>
+                </Segment> */}
                 <Segment style={{ padding: '5em 2em' }} vertical>
                     <Header as='h1'>Top 10</Header>
                     <ThumbnailList list={top10} size="small"/>
                 </Segment>
-                <Segment style={{ padding: '5em 2em' }} vertical>
+                {/* <Segment style={{ padding: '5em 2em' }} vertical>
                     <Header as='h1'>Recent Trend</Header>
-                 </Segment>
+                 </Segment> */}
             </div>
         )
     }

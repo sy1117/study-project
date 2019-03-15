@@ -11,11 +11,11 @@ class ThumbnailList extends React.Component {
     render() {
         const { size, circular, list } = this.props;
 		return (
-            <Image.Group size={size? size:'medium'}
-                style={ {
-                    whiteSpace:'nowrap',
-                    overflowY : 'auto'
-                }}
+            <Image.Group size={size? size:'tiny'}
+                // style={ {
+                //     whiteSpace:'nowrap',
+                //     overflowY : 'auto'
+                // }}
                 >
                 {list.map(item=>(
                     <Link to={`/info/${item._id}`}>

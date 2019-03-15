@@ -74,11 +74,9 @@ class DramaInfo extends Component {
                 <ContentSummary data={this.state.data}></ContentSummary>
               </Grid.Column>
             </Grid.Row>
-            <Grid.Row>
-              <div>
+            <Grid.Row centered>
                 별점 평균:
                 <Rating icon='star' defaultRating={parseInt(average)} maxRating={5} disabled />({average})
-              </div>
             </Grid.Row>
             <Grid.Row centered columns={1}>
               {/* <Grid.Column floated='left'  width={4}>
@@ -87,7 +85,7 @@ class DramaInfo extends Component {
                 </Header>
                 <RadarChart/>
               </Grid.Column> */}
-              <Grid.Column floated='left'>
+              <Grid.Column centered>
                 <Header as='h2'>
                   Comments
                 </Header>
