@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, Container, Header, Grid, Button, Image } from 'semantic-ui-react'
+import { Segment, Container, Header, Grid, Button, Image, Rating } from 'semantic-ui-react'
 import Comment from '../components/Comment'
 import Thumbnail from '../components/Thumbnail'
 import ContentSummary from '../components/ContentSummary'
@@ -58,32 +58,36 @@ class DramaInfo extends Component {
   }
 
   render () {
+    let average = this.props.commentGet.average.toString().indexOf('.') > -1 ? this.props.commentGet.average.toFixed(2) : this.props.commentGet.average;
+
     return (
       <div>
-        <Segment style={{ padding: '8em 0em'}} vertical>
-          <Grid container stackable verticalAlign='middle'>
-            <Grid.Row>
-              <Grid.Column floated='left' width={4}>
-                <Image width='200px' src={this.state.data.url}></Image>
+        <Segment>
+          <Grid centered columns={2}>
+            <Grid.Row floated='center'>
+              <Grid.Column floated='center'>
+                <Image size='small' rounded bordered src={this.state.data.url}></Image>
               </Grid.Column>
-              <Grid.Column width={10}>
+            </Grid.Row>
+            <Grid.Row centered columns={1}>
+              <Grid.Column>
                 <ContentSummary data={this.state.data}></ContentSummary>
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
               <div>
                 별점 평균:
-                {this.props.commentGet.average.toString().indexOf('.') > -1 ? this.props.commentGet.average.toFixed(2) : this.props.commentGet.average} 개
+                <Rating icon='star' defaultRating={parseInt(average)} maxRating={5} disabled />({average})
               </div>
             </Grid.Row>
-            <Grid.Row>
-              <Grid.Column floated='left'  width={4}>
+            <Grid.Row centered columns={1}>
+              {/* <Grid.Column floated='left'  width={4}>
                 <Header as='h2'>
                   Analytics
                 </Header>
                 <RadarChart/>
-              </Grid.Column>
-              <Grid.Column floated='left'  width={4}>
+              </Grid.Column> */}
+              <Grid.Column floated='left'>
                 <Header as='h2'>
                   Comments
                 </Header>

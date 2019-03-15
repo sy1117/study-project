@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Icon, Segment, Button, Feed, Rating } from 'semantic-ui-react';
+import { Input, Icon, Segment, Button, Feed, Rating, Grid } from 'semantic-ui-react';
 import _ from 'lodash';
 
 import "./Comment.css";
@@ -115,19 +115,20 @@ class Comment extends Component {
     }
 
     return ( 
-      
-        <div style={{"display":"flex", "flexDirection":"column"}} >
-          { generateComment(this.props.commentData) }
-          <div style={divStyle}>
+      <Grid container stackable verticalAlign='middle'>
+        <Grid.Row>
+          <Grid.Column>{ generateComment(this.props.commentData) }</Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>
             <Rating icon='star' defaultRating={0} maxRating={5}/>
-            <div className="comment-inline">
-              <Input type="text" placeholder='한줄평을 입력하세요' id="commentInput" onChange={this.inputComment} action>
-                <input style={{width:'30em'}}/>
-                <Button color="teal" onClick={this.saveComment}><Icon name="plus"></Icon>Register</Button>
-              </Input>
-            </div>
-          </div>
-        </div> 
+            <Input type="text" style={{width:'20em'}} placeholder='한줄평을 입력하세요' id="commentInput" onChange={this.inputComment} action>
+              <input/>
+              <Button color="teal" onClick={this.saveComment}><Icon name="plus"></Icon>Register</Button>
+            </Input>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
      );
   }
 }

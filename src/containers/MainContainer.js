@@ -46,7 +46,7 @@ class Main extends React.Component{
                 </Segment>
                 <Segment style={{ padding: '5em 2em' }} vertical>
                     <Header as='h1'>Top 10</Header>
-                    <ThumbnailList list={top10} />
+                    <ThumbnailList list={top10} size="small"/>
                 </Segment>
                 <Segment style={{ padding: '5em 2em' }} vertical>
                     <Header as='h1'>Recent Trend</Header>
