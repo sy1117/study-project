@@ -42,7 +42,7 @@ class DesktopContainer extends React.Component {
 
     return (
       <Router>
-          <Responsive as={Sidebar.Pushable} getWidth={getWidth} maxWidth={Responsive.onlyMobile.maxWidth}>
+          <Responsive as={Sidebar.Pushable}>
             <Sidebar
               as={Menu}
               animation='push'
@@ -73,7 +73,7 @@ class DesktopContainer extends React.Component {
               <Segment
                 inverted
                 textAlign='center'
-                style={{ minHeight: 350, padding: '1em 0em' }}
+                style={{ padding: '1em 0em' }}
                 vertical>
                 <Container>
                   <Menu
@@ -94,7 +94,7 @@ class DesktopContainer extends React.Component {
                     </Menu.Item>
                   </Menu>
                 </Container>
-                <Heading mobile />
+                {/* <Heading mobile /> */}
               </Segment>
               {children}
             </Sidebar.Pusher>

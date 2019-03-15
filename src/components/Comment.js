@@ -117,9 +117,6 @@ class Comment extends Component {
     return ( 
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
-          <Grid.Column>{ generateComment(this.props.commentData) }</Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
           <Grid.Column>
             <Rating icon='star' defaultRating={0} maxRating={5}/>
             <Input type="text" style={{width:'20em'}} placeholder='한줄평을 입력하세요' id="commentInput" onChange={this.inputComment} action>
@@ -127,6 +124,9 @@ class Comment extends Component {
               <Button color="teal" onClick={this.saveComment}><Icon name="plus"></Icon>Register</Button>
             </Input>
           </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>{ generateComment(this.props.commentData) }</Grid.Column>
         </Grid.Row>
       </Grid>
      );
