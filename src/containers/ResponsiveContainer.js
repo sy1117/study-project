@@ -6,6 +6,7 @@ import { Button, Container, Divider, Grid, Header, Icon, Image, List, Menu, Resp
 import MainContainer from './MainContainer'
 import RankContainer from './RankContainer'
 import InfoContainer from './InfoContainer'
+import LoginForm from './LoginContainer'
 
 import Heading from '../components/Heading'
 import Footer from '../components/Footer'
@@ -98,7 +99,8 @@ class DesktopContainer extends React.Component {
               </Segment>
               {children}
             </Sidebar.Pusher>
-          <Route exact path='/' component={MainContainer} />
+          <Route exact path='/' component={LoginForm} />
+          <Route path='/main' component={MainContainer} />
           <Route path='/info/:id' component={InfoContainer} />
           <Route path='/rank' component={RankContainer} />
           </Responsive>
