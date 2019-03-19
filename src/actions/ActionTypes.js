@@ -14,3 +14,7 @@ export const DEL_COMMENT = "DEL_COMMENT";
 export const DEL_COMMENT_SUCCESS = "DEL_COMMENT_SUCCESS";
 export const DEL_COMMENT_FAIL = "DEL_COMMENT_FAIL";
 
+/** login user read */
+export const USER_CHECK = "USE_CHECK";
+export const USER_CHECK_SUCCESS = "USE_CHECK_SUCCESS";
+export const USER_CHECK_FAIL = "USE_CHECK_FAIL";
