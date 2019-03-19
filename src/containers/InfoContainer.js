@@ -125,7 +125,6 @@ class DramaInfo extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log(state.comment.get("get"))
   return {
     commentSave: state.comment.get('save'),
     commentGet: state.comment.get('get'),
