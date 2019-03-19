@@ -30,9 +30,12 @@ class Comment extends Component {
     //console.log(window.location.href)
   }
 
-  clickStar(e){
+  clickStar(e, data){
+    // this.setState({
+    //   clickedStar: (this.state.clickedStar==e.target.getAttribute("data-number")) ? 0 : e.target.getAttribute("data-number") //누른거 또 누를경우 0으로
+    // })
     this.setState({
-      clickedStar: (this.state.clickedStar==e.target.getAttribute("data-number")) ? 0 : e.target.getAttribute("data-number") //누른거 또 누를경우 0으로
+      clickedStar: data.rating
     })
   }
 
@@ -118,7 +121,7 @@ class Comment extends Component {
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
           <Grid.Column>
-            <Rating icon='star' defaultRating={0} maxRating={5}/>
+            <Rating icon='star' defaultRating={0} maxRating={5} onRate={this.clickStar}/>
             <Input type="text" style={{width:'20em'}} placeholder='한줄평을 입력하세요' id="commentInput" onChange={this.inputComment} action>
               <input/>
               <Button color="teal" onClick={this.saveComment}><Icon name="plus"></Icon>Register</Button>
