@@ -6,6 +6,8 @@ import { Button, Container, Divider, Grid, Header, Icon, Image, List, Menu, Resp
 import MainContainer from './MainContainer'
 import RankContainer from './RankContainer'
 import InfoContainer from './InfoContainer'
+import MyPageContainer from './MyPageContainer'
+
 import LoginForm from './LoginContainer'
 
 import Heading from '../components/Heading'
@@ -52,10 +54,10 @@ class DesktopContainer extends React.Component {
               vertical
               visible={sidebarOpened}>
               <Menu.Item as='a' active>
-                Home
+                <Link to="/">Home</Link>
               </Menu.Item>
               <Menu.Item as='a'>
-                Work
+                <Link to="/mypage">My Page</Link>
               </Menu.Item>
               <Menu.Item as='a'>
                 Company
@@ -85,14 +87,14 @@ class DesktopContainer extends React.Component {
                     <Menu.Item onClick={this.handleToggle}>
                       <Icon name='sidebar' />
                     </Menu.Item>
-                    <Menu.Item position='right'>
+                    {/* <Menu.Item position='right'>
                       <Button as='a' inverted>
                         Log in
                       </Button>
                       <Button as='a' inverted style={{ marginLeft: '0.5em' }}>
                         Sign Up
                       </Button>
-                    </Menu.Item>
+                    </Menu.Item> */}
                   </Menu>
                 </Container>
                 {/* <Heading mobile /> */}
@@ -102,7 +104,7 @@ class DesktopContainer extends React.Component {
           <Route exact path='/' component={LoginForm} />
           <Route path='/main' component={MainContainer} />
           <Route path='/info/:id' component={InfoContainer} />
-          <Route path='/rank' component={RankContainer} />
+          <Route path='/mypage' component={MyPageContainer} />
           </Responsive>
 
       </Router>
