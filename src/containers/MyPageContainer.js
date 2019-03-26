@@ -4,6 +4,8 @@ import Radar from '../components/RadarChart';
 // import { getMyDrama } from '../actions/drama';
 
 import { connect } from 'react-redux'
+import { getMyDrama, getData } from '../actions/drama';
+import ThumbnailList from '../components/ThumbnailList';
 
 
 class MyPage extends Component {
@@ -14,7 +16,6 @@ class MyPage extends Component {
   render () {
 
     let {dramaList} = this.props;
-    console.log("render" ,dramaList);
 
     return (
       <div>
@@ -34,27 +35,28 @@ class MyPage extends Component {
           <Header as='h4'>나의 취향 분석</Header>
           <Radar/>
           <Header as='h4'>내가 본 드라마 목록</Header>
-
+          <ThumbnailList list={this.props.dramaList? this.props.dramaList:[]}/>
         </Segment>
       </div>
     )
   }
 
+  componentDidMount(){
+    this.props.getMyDrama();
+  }
 }
 
 const mapStateToProps = (state) => {
   return {
-    // commentSave: state.comment.get('save'),
-    // myDrama: state.drama.get('get'),
-    // commentDel: state.comment.get('del')
+    dramaList : state.drama.toJS().dramaList
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    // dramaList: (userId)=>{
-    //   return dispatch(getMyDrama())
-    // }
+    return {
+      getMyDrama : (id)=>{
+        return dispatch(getMyDrama(id));
+      }
     // saveCommentClick: (commentObj) => {
     //   return dispatch(saveCommentClick(commentObj))
     // },

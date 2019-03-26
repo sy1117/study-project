@@ -18,7 +18,7 @@ class ThumbnailList extends React.Component {
                 // }}
                 >
                 {list.map(item=>(
-                    <Link to={`/info/${item._id}`}>
+                    <Link to={`/info/${item._id}`} key={item._id}>
                         <Image src={item.url} 
                             style={{display:'inline-block'}} 
                             {...(circular? {circular:true} :{})}

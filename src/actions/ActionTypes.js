@@ -18,3 +18,8 @@ export const DEL_COMMENT_FAIL = "DEL_COMMENT_FAIL";
 export const USER_CHECK = "USE_CHECK";
 export const USER_CHECK_SUCCESS = "USE_CHECK_SUCCESS";
 export const USER_CHECK_FAIL = "USE_CHECK_FAIL";
+
+/** drama user read */
+export const GET_ALL_DRAMA = "GET_ALL_DRAMA";
+export const GET_TOP10_DRAMA = "GET_TOP10_DRAMA";
+export const GET_MY_DRAMA = "GET_MY_DRAMA";

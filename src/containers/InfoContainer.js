@@ -40,12 +40,10 @@ class DramaInfo extends Component {
   }
 
   getComment (e) {
-    console.log('get 실행')
     this.props.getCommentClick(this.state.id)
   }
 
   delComment (commentId) {
-    console.log('del 실행')
     this.props.delCommentClick(commentId).then(
       () => {
         if (this.props.commentDel.status == 'DEL_COMMENT_SUCCESS') {
